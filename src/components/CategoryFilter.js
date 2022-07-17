@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
-function CategoryFilter() {
-  return (
+function CategoryFilter({categories,taskFilter}) {
+  const [select,setSelect]=useState(0)
+  
+  
+      return (
     <div className="categories">
       <h5>Category filters</h5>
-      {/* render <button> elements for each category here */}
+      {
+        categories.map((category,index)=>{
+          return ( 
+            <button key={index}  onClick={()=>{
+              taskFilter(category)
+              setSelect(index)
+              }}
+               className={select===index?'selected':null}>{category}</button>
+           
+        )})
+
+      }
     </div>
   );
 }
